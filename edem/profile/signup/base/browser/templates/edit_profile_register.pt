@@ -1,0 +1,217 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="context/@@groupserver_layout/page">
+  <head>
+    <title metal:fill-slot="title">
+      <span tal:replace="view/label"/>: 
+      Sign Up:
+      <span tal:replace="view/siteInfo/get_name"/>
+    </title>
+  </head>
+  <body>
+    <tal:block metal:fill-slot="sitenavigation">
+      <div id="sitenavigation">&#160;</div>
+    </tal:block>
+    <tal:block metal:fill-slot="search">
+      <div id="searcharea">&#160;</div>
+    </tal:block>
+    <tal:block metal:fill-slot="utilitylinks">
+      <div id="utilitylinks">&#160;</div>
+    </tal:block>
+    <div id="contextnav" metal:fill-slot="contextnavigation">
+      <p class="label">Sign Up</p>
+      <ul id="signup-progress">
+        <li class="done">Enter email</li>
+        <li class="done">Set password</li>
+        <li class="current">Change profile</li>
+        <li>Finish</li>
+      </ul>
+    </div><!--contextnav-->
+    <tal:block content="structure provider:groupserver.FormStatusMessage"
+      define="errors view/errors; status view/status; widgets view/widgets"
+      metal:fill-slot="messages">&#160;</tal:block>
+    <tal:block metal:fill-slot="body">
+      <h1 tal:content="view/label">Edit Profile</h1>
+      <p>
+        <strong>Thanks!</strong>
+        Your password is set.
+      </p>
+      <p>
+        You can now <strong>change your profile.</strong>
+        When you have finished, click the 
+        <samp class="button" 
+          tal:define="action python:[a for a in view.actions][0].label"
+          tal:content="action">Big R</samp> 
+        button.
+        Some profile fields are required, and are marked
+        <span class="required"><label style="display:inline;margin:0px;">like this</label></span>.
+      </p>
+      <p>
+        Most of your profile properties are only visible to other
+        logged in users of
+        <span class="site" 
+          tal:content="view/siteInfo/get_name">this site</span>,
+        when they visit your profile page.
+        However, if you post to a public group, then your name will be
+        visible to all visitors to that group, even if
+        they are not logged in.
+        You will be able to change all your profile properties later.
+      </p>
+      <form enctype="multipart/form-data"  method="post" action="."
+        tal:attributes="action request/URL" id="edit-profile">
+        <div id="standardProfileFields">
+          <tal:block define="widgets python:[view.widgets['givenName'], view.widgets['familyName']]">
+            <tal:block replace="structure provider:groupserver.FormWidgets"/>
+          </tal:block>
+          <div class="form-widget" id="widget-abc123" 
+            tal:define="widget python:view.widgets['fn']; req widget/required;
+              style python:req and 'required' or 'not-required'"
+            tal:attributes="id string:widget-${widget/name};
+              class string:form-widget ${style}">
+            <label for="abc123" title="The hint for the widget"
+              tal:attributes="for widget/name; title widget/hint"
+              tal:content="widget/label">
+              A label
+            </label>                      
+            <div class="form-widget not-required" 
+              style="margin-left: 1.39em;">
+              <input class="checkboxType" type="checkbox" name="faux0" 
+                id="editFnInterlock"/>
+              <label for="editFnInterlock" class="checkboxLabel">Edit
+                (to add a nickname, as long as your real name is included)</label>
+            </div><!--form-widget-->
+            <tal:block replace="structure widget">Widget</tal:block>
+            </div><!--fn-->
+            <tal:block define="widgets python:[view.widgets['region'],view.widgets['neighbourhood']]">
+              <tal:block
+                replace="structure provider:groupserver.FormWidgets"/>
+          </tal:block>          
+        </div><!--standardProfileFields-->
+         <div id="advancedProfileFields" class="disclosureWidget">
+          <p>
+            <a class="disclosureButton" href="javascript:showHideDisclosure('advancedProfileFields')">You may optionally share more details, add bio, set time zone.</a>
+          </p>
+          <div class="disclosureShowHide" style="display: none;">
+           
+          <tal:block define="widgets python:view.filteredOptionalProfileWidgets(['form.region','form.neighbourhood'])">
+            <tal:block
+              replace="structure provider:groupserver.FormWidgets"/>
+          </tal:block>
+          </div><!--disclosureShowHide-->
+        </div><!--advancedProfileFields-->
+        
+        <div id="nonProfileFields">
+          <tal:block define="widgets view/nonProfileWidgets">
+            <tal:block
+              replace="structure provider:groupserver.FormWidgets"/>
+          </tal:block>
+        </div><!--nonProfileFields-->
+
+        <div id="missing-groups-message"
+             class="form-widget-message ui-widget ui-state-error ui-corner-all">
+          <span class="ui-icon ui-icon-alert">&nbsp;</span>
+          <span class="msg">
+            <span class="error">You must select at least one group to join.</span>
+          </span>
+        </div>
+
+        <div id="additionalGroupFields" class="disclosureWidget">
+          <p>
+            <a class="disclosureButton" href="javascript:showHideDisclosure('additionalGroupFields')">More groups</a>
+          </p>
+          <div class="disclosureShowHide" id="additional-group-fields" style="display: none;">
+          </div><!--disclosureShowHide-->
+        </div><!--advancedProfileFields-->
+
+        <div id="hiddenFields">
+          <tal:block repeat="widget view/hiddenWidgets">
+            <tal:block
+              replace="structure widget/hidden"/>
+          </tal:block>          
+        </div><!--hiddenFields-->
+        
+        <div class="buttons" tal:condition="view/availableActions">
+          <tal:block repeat="action view/actions">
+            <div class="formelementbutton">
+              <span tal:replace="structure action/render">Button</span>
+            </div>
+          </tal:block>
+        </div>
+        
+      </form>
+    </tal:block>
+    <tal:block metal:fill-slot="javascript">
+      <script type="text/javascript"
+        src="/++resource++check_required-20071214.js">&#160;</script>
+      <script type="text/javascript"
+        src="/++resource++suggest_fn-20081021.js">&#160;</script>
+      <script type="text/javascript"
+        tal:define="widgets view/widgets; 
+          button string:#form\\.actions\\.change"
+        tal:content="provider:groupserver.RequiredWidgetsJavaScript">
+        alert("I have not been replaced.");
+      </script>
+      <script type="text/javascript"
+        src="/++resource++popup_help-20071218.js">&#160;</script>
+      <script type="text/javascript">
+          var checkedgroup = [];
+          var uncheckedgroup = [];
+          jQuery("input[name='form.joinable_groups']").each(function(index, element){
+              cbg = jQuery("span[id=checkboxgroup-form-joinable_groups-"+index+"]");
+              if (jQuery(element).is(":checked")) {
+                  checkedgroup.push(cbg);
+              } else {
+                  uncheckedgroup.push(cbg);
+              }
+          });
+          
+          jQuery(uncheckedgroup).each(function(index, element) {
+              element.detach();
+              jQuery("#additional-group-fields").append(element);
+          });
+
+          if (jQuery(checkedgroup).length > 0) {
+              jQuery("#missing-groups-message").toggle();
+          }
+      </script>
+      <script type="text/javascript">
+        jQuery(document).ready( function() {
+            GSPopupFormHelp.init('#edit-profile');
+            GSSuggestFN.init('#form\\.givenName', '#form\\.familyName', 
+              '#form\\.fn');
+              
+            // Handle the interlock between the FN field and the Edit checkbox
+            var handle_edit_available = function(event) {
+                var fnEntry = null;
+                var checkbox = null;
+                
+                fnEntry = jQuery('#form\\.fn');
+                checkbox = jQuery(this);
+                
+                if (checkbox.is(":checked")) {
+                    fnEntry.removeAttr("disabled");
+                } else {
+                    fnEntry.attr("disabled", "disabled");
+                }
+            };
+            jQuery('#form\\.fn').attr("disabled","disabled");
+            jQuery('#editFnInterlock').change(handle_edit_available);
+            
+            var activate_fn = function(event) {
+                jQuery('#form\\.fn').removeAttr("disabled"); 
+                return true;
+            };
+            jQuery('#edit-profile').submit(activate_fn);            
+            jQuery('#form\\.fn').focus();
+        });
+      </script>
+      <script type="text/javascript" 
+        src="/++resource++wymeditor-20090831/jquery.wymeditor.js">&#160;</script>
+      <script type="text/javascript"
+        src="/++resource++gswym.js">&#160;</script>
+
+    </tal:block>
+  </body>
+</html>
+
