@@ -17,7 +17,7 @@ class IHateThisRequirement(IEDemProfile):
 
 class EDemRegisterEditProfileForm(RegisterEditProfileForm):
     label = u'Change Profile'
-    pageTemplateFileName = 'templates/edit_profile_register.pt'
+    pageTemplateFileName = 'browser/templates/edit_profile_register.pt'
     template = ZopeTwoPageTemplateFile(pageTemplateFileName)
     
     @form.action(label=u'Submit', failure='handle_set_action_failure')
