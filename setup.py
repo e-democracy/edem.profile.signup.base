@@ -7,8 +7,8 @@ version = get_version()
 
 setup(name='edem.profile.signup.base',
     version=version,
-    description="E-Democracy customization to GroupServer's user registration
-                 system",
+    description="E-Democracy customization to GroupServer's user registration "
+                 + "system",
     long_description=open("README.txt").read() + "\n" +
                       open(os.path.join("docs", "HISTORY.txt")).read(),
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers for values 
