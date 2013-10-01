@@ -1,0 +1,208 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="context/@@groupserver_layout/page">
+  <head>
+    <title metal:fill-slot="title">
+      <span tal:replace="view/label">Register</span>:
+      <span tal:replace="view/siteInfo/get_name">this site</span>
+    </title>
+  </head>
+  <body>
+    <div id="contextnav" metal:fill-slot="contextnavigation">
+      <p class="label">Sign Up</p>
+      <ul id="signup-progress">
+        <li class="current">Choose method</li>
+        <li>Set password</li>
+        <li>Change profile</li>
+        <li>Verify email or Finish</li>
+      </ul>
+    </div><!--contextnav-->
+    <tal:block content="structure provider:groupserver.FormStatusMessage"
+      define="errors view/errors; status view/status; widgets view/widgets"
+      metal:fill-slot="messages">&#160;</tal:block>
+    <tal:block metal:fill-slot="body">
+      <h1 tal:content="view/label">Sign up</h1>
+      <p id="intro"><strong>Sign up with
+          <span class="site" tal:content="siteName">this site</span></strong>
+        so you can join forums, post messages, and receive email from
+        your forums.
+      
+      <div class="disclosureWidget" id="rules">
+        <p><a class="disclosureButton">By signing up with 
+          E -Democracy.org, you agree to the rules of 
+          participation, including use of your real name and civility
+          (no name calling).</a></p>
+        <div class="disclosureShowHide" style="display: none;">
+          <h2>Rules of Participation Summary</h2>
+          <ol>
+            <li><strong>Real Names Required</strong> &#8212; Register and post
+            with your real name and community.</li>
+            <li><strong>Right to Post and Reply</strong> &#8212; Sharing your
+            knowledge and opinions with your fellow participants is a democratic
+            right.</li>
+            <li><strong>Limit on Posting within a Forum's Purpose</strong> &#8212; 
+              Two posts per day per member on most forums. Forum charters determine
+              geographic or topical scope.</li>
+            <li><strong>Be Civil</strong> &#8212; No name-calling. 
+              Respect among people with differing views is our 
+              cornerstone.</li>
+            <li><strong>No Personal Attacks</strong> &#8212; This keeps
+              the forums welcoming and safer.</li>
+            <li><strong>Private Stays Private</strong> &#8212; Don't
+              forward private communication without permission.</li>
+            <li><strong>Avoid Unsubstantiated Rumors</strong> &#8212; Asking for
+              clarification of what you've heard in the community can be 
+              appropriate if issues-based. 
+              You alone are responsible for what you post.</li>
+            <li><strong>Items Not Allowed in Forums</strong> &#8212; 
+              No strong profanity, pornographic content, chain letters, unsolicited
+              commercial advertising, etc. Forum charters may detail examples or
+              exceptions including allowing commercial exchange and advice.</li>
+            <li><strong>Public Content and Use</strong> &#8212; You are
+              sharing your content under the E-Democracy.org selected Creative
+              Commons license unless you state an alternative copyright.</li>
+            <li><strong>Warnings and Suspensions</strong> &#8212; 
+              You may receive informal or official warnings. The volunteer Forum
+              Manager is responsible for facilitation and enforcing rules. With
+              your second official warning in one year, you are suspended for two
+              weeks. You may appeal all warnings after a third warning that brings
+              a six-month suspension.</li>
+            <li><strong>Forum Managers</strong> &#8212; Each forum has a manager
+              with responsibilities and technical privileges to meet those
+              responsibilities. Disputes with Forum Managers may be brought to
+              E-Democracy.org through various mechanisms.</li>
+          </ol>
+          <p><a href="http://pages.e-democracy.org/Rules" 
+            title="E-Democracy Forum Rules">The detailed rules</a> 
+            are also avaliable.</p>
+        </div><!--disclosureShowHide-->
+      </div><!--rules-->
+      <div class="disclosureWidget" id="privacy">
+        <p><a class="disclosureButton">Your privacy is important, and
+          will be maintained according to the 
+          <cite class="page">Privacy and Public Life Policy
+            of E-Democracy.Org</cite>.</a></p>
+        <div class="disclosureShowHide" style="display: none;">
+          <p>Participation in E-Democracy.Org is fundamentally about public
+            life. 
+          </p>
+          <p>We seek to create a safe, trusting environment where people 
+            know who has the ability to communicate publicly with them in
+            our forums. 
+            While this is a community experience not a private life
+            activity, we do take actions to protect your privacy. 
+          </p>
+          <p>E-Democracy does not sell, rent, or exchange private
+            information with third parties on individuals using our web
+            site, forums, or services. 
+            Representatives of E-Democracy.Org including staff,
+            contractors, Board members, Forum Managers, and local
+            volunteers may not use personally identifiable information that
+            is provided to E-Democracy.Org for any purposes that are
+            unrelated to the mission and official activities of
+            E-Democracy.Org and its local affiliates.
+          </p>
+          <ul>
+            <li>For forum registration and verification purposes, we
+              require real names, community, country, and at least one valid
+              e-mail address. 
+            </li>
+            <li>Only members may post to a forum, and by submitting such
+              a post, members share their e-mail address with other members
+              via e-mail as typical with e-mail discussion lists. 
+              We obscure e-mail addresses in the web versions of posts.
+            </li>
+            <li>The names of registered members of our public forums are
+              listed with each forum on the web. 
+            </li>
+            <li>Anyone may read posts via our web site, but non-members do
+              not have access to posters' e-mail addresses, and cannot post
+              to a forum.
+              If you wish to remain anonymous, do not register and do not
+              join a forum.
+            </li>
+            <li>Our forum system uses <q>cookies</q> to allow you to
+              maintain a logged in status and we use basic web statistic
+              analytical tools.
+              We do not monitor the viewing activities of users nor
+              disclose such information.
+            </li>
+            <li>Our Content Removal Policy does allow requests to redact
+              personal information you or others shared via a public forum
+              that is determined to present a potential threat to that
+              individuals safety. 
+            </li>
+            <li>Posts, including the name of the author, made to our public
+              forums, similar to print letter to the editor, may be
+              publicly accessible in perpetuity. 
+            </li>
+            <li>Forums include optional member profiles with public fields
+              will be accessible to others. Sharing public biographic
+              information among members builds reciprocal trust. 
+              We hide e-mail addresses, but allow a <q>request contact</q>
+              feature to ensure participation equality for web-based
+              participants.
+              Do not include information in these optional fields that you
+              do not want to be public.
+              Internet search engines may index your public posts and
+              voluntarily provided profile information.
+            </li>
+          </ul>
+          <p>Any personal information collected by specific forums, local
+            committees/chapters, or for use with other services owned and
+            operated by E-Democracy.Org, labeled private will not be
+            disclosed publicly.
+            By default, as a <q>public life</q> initiative, information
+            fields not clearly labeled private should be considered public,
+            viewable, and potentially accessible. 
+          </p>
+          <p>Specific non-forum services, such as e-mail newsletters,
+            surveys requesting demographic information, and online
+            donation systems will have clearly stated additional privacy
+            guarantees as appropriate.</p>
+          <p>Adopted by the E-Democracy.Org Board, February 2009</p>
+        </div><!--disclosureShowHide-->
+      </div><!--privacy-->
+      
+    <span tal:replace="structure provider:groupserver.SignupMethods" />
+       
+    </tal:block>
+    <tal:block metal:fill-slot="javascript">
+      
+      <script type="text/javascript"
+        src="++resource++check_email-20110222.js">&#160;</script>
+      <script type="text/javascript"
+        src="/++resource++check_required-20071214.js">&#160;</script>
+      <script type="text/javascript">
+        jQuery.noConflict()
+        jQuery(document).ready( function () {
+            var webmail = new Array('gmail', 'hotmail', 'yahoo');
+            GSCheckEmailAddress.init(
+                '#form\\.email',
+                '#form\\.actions\\.register',
+                '#addressBookHelp',
+                webmail,
+                '#emailHelp');
+        
+            jQuery("#privacy-button").click( function () {
+                var uri = "/policies/privacy/ #privacy";
+                jQuery("#privacy-content").load(uri);
+            });
+
+            jQuery("#tc-button").click( function () {
+                var uri = "/policies/aup/ #aup";
+                jQuery("#tc-content").load(uri);
+            });
+            jQuery('#form\\.email').focus();
+        });
+      </script>
+      <script type="text/javascript"
+        tal:define="widgets view/widgets; 
+          button string:#form\\.actions\\.5369676e207570"
+        tal:content="provider:groupserver.RequiredWidgetsJavaScript">
+        alert("I have not been replaced.");
+      </script>
+    </tal:block>
+  </body>
+</html>

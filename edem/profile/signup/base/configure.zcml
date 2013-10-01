@@ -9,5 +9,12 @@
     class=".edit_profile.EDemRegisterEditProfileForm" 
     layer="gs.skin.ogn.edem.interfaces.IEDemLayer" 
     permission="zope2.ManageProperties" />
+
+  <browser:page
+    for="*" 
+    name="request_registration.html" 
+    class=".request_registration.EDemRequestRegistrationForm" 
+    layer="gs.skin.ogn.edem.interfaces.IEDemLayer" 
+    permission="zope2.Public" />
 </configure>
 
