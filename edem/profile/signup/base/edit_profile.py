@@ -1,4 +1,5 @@
 # coding=utf-8
+from __future__ import absolute_import, unicode_literals
 from zope.formlib import form
 from Products.CustomUserFolder.interfaces import IGSUserInfo
 from Products.Five.browser.pagetemplatefile import \
@@ -6,18 +7,18 @@ from Products.Five.browser.pagetemplatefile import \
 from Products.GSProfile.profileaudit import ProfileAuditer
 from gs.profile.signup.base.changeprofile import ChangeProfileForm  \
     as RegisterEditProfileForm
-from utils import fn_to_nickname
+from .utils import fn_to_nickname
 
 import logging
 log = logging.getLogger('EDemEditProfileForm')
 
 
 class EDemRegisterEditProfileForm(RegisterEditProfileForm):
-    label = u'Change Profile'
+    label = 'Change Profile'
     pageTemplateFileName = 'browser/templates/edit_profile_register.pt'
     template = ZopeTwoPageTemplateFile(pageTemplateFileName)
 
-    @form.action(label=u'Submit', failure='handle_set_action_failure')
+    @form.action(label='Submit', failure='handle_set_action_failure')
     def handle_set(self, action, data):
         user = self.context
         self.auditer = ProfileAuditer(user)

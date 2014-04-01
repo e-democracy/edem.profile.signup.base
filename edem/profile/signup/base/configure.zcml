@@ -7,14 +7,14 @@
     for="Products.CustomUserFolder.interfaces.ICustomUser" 
     name="registration_profile.html" 
     class=".edit_profile.EDemRegisterEditProfileForm" 
-    layer="gs.skin.ogn.edem.interfaces.IEDemLayer" 
+    layer="edem.skin.interfaces.IEDemLayer" 
     permission="zope2.ManageProperties" />
 
   <browser:page
     for="*" 
     name="request_registration.html" 
     class=".request_registration.EDemRequestRegistrationForm" 
-    layer="gs.skin.ogn.edem.interfaces.IEDemLayer" 
+    layer="edem.skin.interfaces.IEDemLayer" 
     permission="zope2.Public" />
 </configure>
 
