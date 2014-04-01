@@ -9,30 +9,25 @@
     </title>
   </head>
   <body>
-    <div id="contextnav" metal:fill-slot="contextnavigation">
-      <p class="label">Sign Up</p>
-      <ul id="signup-progress">
-        <li class="current">Choose method</li>
-        <li>Set password</li>
-        <li>Change profile</li>
-        <li>Verify email or Finish</li>
-      </ul>
-    </div><!--contextnav-->
     <tal:block content="structure provider:groupserver.FormStatusMessage"
       define="errors view/errors; status view/status; widgets view/widgets"
       metal:fill-slot="messages">&#160;</tal:block>
     <tal:block metal:fill-slot="body">
       <h1 tal:content="view/label">Sign up</h1>
-      <p id="intro"><strong>Sign up with
-          <span class="site" tal:content="siteName">this site</span></strong>
+      <p id="intro">
+        <strong>Sign up with
+        <span class="site" tal:content="siteName">this site</span></strong>
         so you can join forums, post messages, and receive email from
         your forums.
-      
+      </p>
       <div class="disclosureWidget" id="rules">
-        <p><a class="disclosureButton">By signing up with 
-          E -Democracy.org, you agree to the rules of 
-          participation, including use of your real name and civility
-          (no name calling).</a></p>
+        <p>
+          <a class="disclosureButton" 
+            id="rules-button"
+            href="javascript:showHideDisclosure('rules')">By signing up with 
+          E -Democracy.org, you agree to the rules of participation, including 
+          use of your real name and civility (no name calling).</a>
+        </p>
         <div class="disclosureShowHide" style="display: none;">
           <h2>Rules of Participation Summary</h2>
           <ol>
@@ -73,16 +68,18 @@
               responsibilities. Disputes with Forum Managers may be brought to
               E-Democracy.org through various mechanisms.</li>
           </ol>
-          <p><a href="http://pages.e-democracy.org/Rules" 
+          <p><a href="/support/rules" 
             title="E-Democracy Forum Rules">The detailed rules</a> 
             are also avaliable.</p>
         </div><!--disclosureShowHide-->
       </div><!--rules-->
       <div class="disclosureWidget" id="privacy">
-        <p><a class="disclosureButton">Your privacy is important, and
-          will be maintained according to the 
-          <cite class="page">Privacy and Public Life Policy
-            of E-Democracy.Org</cite>.</a></p>
+        <p>
+          <a class="disclosureButton"
+            id="privacy-button"
+            href="javascript:showHideDisclosure('privacy')">Your privacy is 
+            important, and will be maintained according to the 
+            <cite class="page">Privacy and Public Life Policy of E-Democracy.Org</cite>.</a></p>
         <div class="disclosureShowHide" style="display: none;">
           <p>Participation in E-Democracy.Org is fundamentally about public
             life. 
@@ -164,45 +161,12 @@
           <p>Adopted by the E-Democracy.Org Board, February 2009</p>
         </div><!--disclosureShowHide-->
       </div><!--privacy-->
-      
-    <span tal:replace="structure provider:groupserver.SignupMethods" />
+      <span tal:replace="structure provider:groupserver.SignupMethods" />
        
     </tal:block>
     <tal:block metal:fill-slot="javascript">
-      
       <script type="text/javascript"
-        src="++resource++check_email-20110222.js">&#160;</script>
-      <script type="text/javascript"
-        src="/++resource++check_required-20071214.js">&#160;</script>
-      <script type="text/javascript">
-        jQuery.noConflict()
-        jQuery(document).ready( function () {
-            var webmail = new Array('gmail', 'hotmail', 'yahoo');
-            GSCheckEmailAddress.init(
-                '#form\\.email',
-                '#form\\.actions\\.register',
-                '#addressBookHelp',
-                webmail,
-                '#emailHelp');
-        
-            jQuery("#privacy-button").click( function () {
-                var uri = "/policies/privacy/ #privacy";
-                jQuery("#privacy-content").load(uri);
-            });
-
-            jQuery("#tc-button").click( function () {
-                var uri = "/policies/aup/ #aup";
-                jQuery("#tc-content").load(uri);
-            });
-            jQuery('#form\\.email').focus();
-        });
-      </script>
-      <script type="text/javascript"
-        tal:define="widgets view/widgets; 
-          button string:#form\\.actions\\.5369676e207570"
-        tal:content="provider:groupserver.RequiredWidgetsJavaScript">
-        alert("I have not been replaced.");
-      </script>
+        src="/++resource++edem_profile_signup.js" defer="defer">&#160;</script>
     </tal:block>
   </body>
 </html>

@@ -16,5 +16,10 @@
     class=".request_registration.EDemRequestRegistrationForm" 
     layer="edem.skin.interfaces.IEDemLayer" 
     permission="zope2.Public" />
+    
+  <browser:resource
+    name="edem-profile-signup.js"
+    file="browser/javascript/signup.js"
+    layer="edem.skin.interfaces.IEDemLayer"
+    permission="zope2.Public" />
 </configure>
-
