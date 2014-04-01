@@ -2,13 +2,13 @@ jQuery.noConflict();
 
 function gs_profile_signup_init_disclosure () {
     jQuery("#privacy-button").click( function () {
-        var uri = "/policies/privacy/ #privacy";
+        var uri = "/support/policies/privacy/ .gs-products-gscontentmanager>:not(#tabmenu)";
         jQuery("#privacy-content").load(uri);
     });
 
     jQuery("#rules-button").click( function () {
-        var uri = "/support/rules/ #aup";
-        jQuery("#tc-content").load(uri);
+        var uri = "/support/rules/ .gs-products-gscontentmanager>:not(#tabmenu)";
+        jQuery("#rules-content").load(uri);
     });
 }
 

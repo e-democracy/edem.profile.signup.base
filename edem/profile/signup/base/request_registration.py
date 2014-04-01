@@ -11,5 +11,5 @@ log = logging.getLogger('EDemRequestRegistrationForm')
 
 class EDemRequestRegistrationForm(RequestRegistrationForm):
     label = 'Sign Up'
-    pageTemplateFileName = 'browser/templates/request_register.pt'
+    pageTemplateFileName = 'browser/templates/signup.pt'
     template = ZopeTwoPageTemplateFile(pageTemplateFileName)

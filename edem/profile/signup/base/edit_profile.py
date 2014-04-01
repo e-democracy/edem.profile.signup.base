@@ -15,7 +15,7 @@ log = logging.getLogger('EDemEditProfileForm')
 
 class EDemRegisterEditProfileForm(RegisterEditProfileForm):
     label = 'Change Profile'
-    pageTemplateFileName = 'browser/templates/edit_profile_register.pt'
+    pageTemplateFileName = 'browser/templates/changeprofile.pt'
     template = ZopeTwoPageTemplateFile(pageTemplateFileName)
 
     @form.action(label='Submit', failure='handle_set_action_failure')

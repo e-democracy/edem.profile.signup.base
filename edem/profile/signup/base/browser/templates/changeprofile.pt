@@ -10,24 +10,9 @@
     </title>
   </head>
   <body>
-    <tal:block metal:fill-slot="sitenavigation">
-      <div id="sitenavigation">&#160;</div>
-    </tal:block>
-    <tal:block metal:fill-slot="search">
-      <div id="searcharea">&#160;</div>
-    </tal:block>
     <tal:block metal:fill-slot="utilitylinks">
       <div id="utilitylinks">&#160;</div>
     </tal:block>
-    <div id="contextnav" metal:fill-slot="contextnavigation">
-      <p class="label">Sign Up</p>
-      <ul id="signup-progress">
-        <li class="done">Enter email</li>
-        <li class="done">Set password</li>
-        <li class="current">Change profile</li>
-        <li>Finish</li>
-      </ul>
-    </div><!--contextnav-->
     <tal:block content="structure provider:groupserver.FormStatusMessage"
       define="errors view/errors; status view/status; widgets view/widgets"
       metal:fill-slot="messages">&#160;</tal:block>
@@ -58,8 +43,21 @@
         they are not logged in.
         You will be able to change all your profile properties later.
       </p>
-      <form enctype="multipart/form-data"  method="post" action="."
-        tal:attributes="action request/URL" id="edit-profile">
+      <div id="privacy" class="disclosureWidget">
+        <p>
+          <a class="disclosureButton" id="privacy-button"
+             href="javascript:showHideDisclosure('privacy')">Your privacy
+          is important, and will be maintained  according to the
+          privacy policy of
+          <span class="site" tal:content="siteName">this site</span>.</a>
+        </p>
+        <div class="disclosureShowHide" style="display: none;">
+          <div id="privacy-content">Loading&#8230;</div>
+        </div><!--disclosureShowHide-->
+      </div><!--privacy-->
+      <form id="edit-profile" class="gs-content-js-required"
+        enctype="multipart/form-data"  method="post" action="."
+        tal:attributes="action request/URL" >
         <div id="standardProfileFields">
           <tal:block define="widgets python:[view.widgets['givenName'], view.widgets['familyName']]">
             <tal:block replace="structure provider:groupserver.FormWidgets"/>
@@ -153,64 +151,16 @@
         alert("I have not been replaced.");
       </script>
       <script type="text/javascript"
-        src="/++resource++popup_help-20071218.js">&#160;</script>
-      <script type="text/javascript">
-          var checkedgroup = [];
-          var uncheckedgroup = [];
-          jQuery("input[name='form.joinable_groups']").each(function(index, element){
-              cbg = jQuery("span[id=checkboxgroup-form-joinable_groups-"+index+"]");
-              if (jQuery(element).is(":checked")) {
-                  checkedgroup.push(cbg);
-              } else {
-                  uncheckedgroup.push(cbg);
-              }
-          });
-          
-          jQuery(uncheckedgroup).each(function(index, element) {
-              element.detach();
-              jQuery("#additional-group-fields").append(element);
-          });
-
-          if (jQuery(checkedgroup).length > 0) {
-              jQuery("#missing-groups-message").toggle();
-          }
-      </script>
-      <script type="text/javascript">
-        jQuery(document).ready( function() {
-            GSPopupFormHelp.init('#edit-profile');
-            GSSuggestFN.init('#form\\.givenName', '#form\\.familyName', 
-              '#form\\.fn');
-              
-            // Handle the interlock between the FN field and the Edit checkbox
-            var handle_edit_available = function(event) {
-                var fnEntry = null;
-                var checkbox = null;
-                
-                fnEntry = jQuery('#form\\.fn');
-                checkbox = jQuery(this);
-                
-                if (checkbox.is(":checked")) {
-                    fnEntry.removeAttr("disabled");
-                } else {
-                    fnEntry.attr("disabled", "disabled");
-                }
-            };
-            jQuery('#form\\.fn').attr("disabled","disabled");
-            jQuery('#editFnInterlock').change(handle_edit_available);
-            
-            var activate_fn = function(event) {
-                jQuery('#form\\.fn').removeAttr("disabled"); 
-                return true;
-            };
-            jQuery('#edit-profile').submit(activate_fn);            
-            jQuery('#form\\.fn').focus();
-        });
-      </script>
-      <script type="text/javascript" 
-        src="/++resource++wymeditor-20090831/jquery.wymeditor.js">&#160;</script>
-      <script type="text/javascript"
-        src="/++resource++gswym.js">&#160;</script>
-
+        src="/++resource++popup_help-20071218.js" defer="true">&#160;</script>
+      <script type="text/javascript" defer="true"
+        src="/++resource++edem-profile-signup-changeprofile.js">&#160;</script>
+      <script
+        class="gs-content-js-wymeditor"
+        type="text/javascript"
+        data-text-element="#form\.biography"
+        data-submit="#form\.actions\.change"
+        src="/++resource++wymeditor-1.0.0b5/gswymeditor-min.js"
+        defer="true">&#160;</script>
     </tal:block>
   </body>
 </html>
