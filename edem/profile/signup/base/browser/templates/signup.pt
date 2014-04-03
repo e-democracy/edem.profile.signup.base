@@ -49,7 +49,7 @@
     </tal:block>
     <tal:block metal:fill-slot="javascript">
       <script type="text/javascript"
-        src="/++resource++edem-profile-signup.js" defer="defer">&#160;</script>
+        src="/++resource++edem-profile-signup-20140402.js" defer="defer">&#160;</script>
     </tal:block>
   </body>
 </html>

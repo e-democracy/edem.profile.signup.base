@@ -1,3 +1,4 @@
+"use strict";
 jQuery.noConflict();
 
 function gs_profile_signup_init_disclosure () {

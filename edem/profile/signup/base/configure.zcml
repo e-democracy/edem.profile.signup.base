@@ -18,13 +18,13 @@
     permission="zope2.Public" />
     
   <browser:resource
-    name="edem-profile-signup.js"
-    file="browser/javascript/signup.js"
+    name="edem-profile-signup-20140402.js"
+    file="browser/javascript/signup-min.js"
     layer="edem.skin.interfaces.IEDemLayer"
     permission="zope2.Public" />
   <browser:resource
-    name="edem-profile-signup-changeprofile.js"
-    file="browser/javascript/changeprofile.js"
+    name="edem-profile-signup-changeprofile-20140402.js"
+    file="browser/javascript/changeprofile-min.js"
     layer="edem.skin.interfaces.IEDemLayer"
     permission="zope2.Public" />
 </configure>
