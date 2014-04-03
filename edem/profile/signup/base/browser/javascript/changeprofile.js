@@ -6,7 +6,7 @@ function edem_changeprofile_init_joinable_groups(){
     var uncheckedgroup = [];
 
     jQuery("input[name='form.joinable_groups']").each(function(index, element){
-        cbg = jQuery("span[id=checkboxgroup-form-joinable_groups-"+index+"]");
+        var cbg = jQuery("span[id=checkboxgroup-form-joinable_groups-"+index+"]");
         if (jQuery(element).is(":checked")) {
             checkedgroup.push(cbg);
         } else {
