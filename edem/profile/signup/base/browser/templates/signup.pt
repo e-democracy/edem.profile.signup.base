@@ -26,8 +26,9 @@
             <a class="disclosureButton" 
               id="rules-button"
               href="javascript:showHideDisclosure('rules')">By signing up with 
-            E -Democracy.org, you agree to the rules of participation, including 
-            use of your real name and civility (no name calling).</a>
+            <span class="site" tal:content="siteName">this site</span>, you agree
+            to the rules of participation, including use of your real name and
+            civility (no name calling).</a>
           </p>
           <div class="disclosureShowHide" style="display: none;">
             <div id="rules-content">Loading&#8230;</div>
@@ -39,7 +40,8 @@
               id="privacy-button"
               href="javascript:showHideDisclosure('privacy')">Your privacy is 
               important, and will be maintained according to the 
-              <cite class="page">Privacy and Public Life Policy of E-Democracy.Org</cite>.</a></p>
+              <cite class="page">Privacy and Public Life Policy of 
+              <span class="site" tal:content="siteName">this site</span></cite>.</a></p>
           <div class="disclosureShowHide" style="display: none;">
             <div id="privacy-content">Loading&#8230;</div>
           </div><!--disclosureShowHide-->
