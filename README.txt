@@ -8,10 +8,10 @@ E-Democracy customization to GroupServer's user registration system
 :Author: `Bill Bushey`_
 :Contact: Bill Bushey <bill.bushey@e-democracy.org>
 :Date: 2013-09-26
-:Organization: `E-Democracy.org`_
+:Organization: `E-Democracy`_
 :Copyright: This document is licensed under a
   `Creative Commons Attribution-Share Alike 3.0`_
-  by `CREATING ORGANIZATION`_.
+  by `E-Democracy`_.
 
 Introduction
 ===========
@@ -28,7 +28,7 @@ Resources
 - Report bugs at https://redmine.iopen.net/projects/groupserver
 
 .. _GroupServer: http://groupserver.org/
-.. _E-Democracy.org: http://e-democracy.org.org/
+.. _E-Democracy: http://e-democracy.org/
 .. _Bill Busehy: http://groupserver.org/p/wbushey
 .. _Creative Commons Attribution-Share Alike 3.0:
    http://creativecommons.org/licenses/by-sa/3.0/
