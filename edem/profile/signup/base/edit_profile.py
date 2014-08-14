@@ -1,5 +1,7 @@
 # coding=utf-8
 from __future__ import absolute_import, unicode_literals
+from urllib import urlencode
+from urlparse import urlparse
 from zope.formlib import form
 from Products.CustomUserFolder.interfaces import IGSUserInfo
 from Products.Five.browser.pagetemplatefile import \
@@ -20,34 +22,35 @@ class EDemRegisterEditProfileForm(RegisterEditProfileForm):
 
     @form.action(label='Submit', failure='handle_set_action_failure')
     def handle_set(self, action, data):
-        user = self.context
-        self.auditer = ProfileAuditer(user)
+        self.auditer = ProfileAuditer(self.context)
         self.actual_handle_set(action, data)
 
-        userInfo = IGSUserInfo(self.ctx)
-        if userInfo.nickname == userInfo.id:
-            m = 'Adding nickname to %s (%s)' % (userInfo.name, userInfo.id)
+        # Actual E-Dem Custom code. We like to set the nickname during reg
+        if self.userInfo.nickname == self.userInfo.id:
+            m = 'Adding nickname to %s (%s)' % (self.userInfo.name, 
+                self.userInfo.id)
             log.info(m)
-            nickname = fn_to_nickname(user, userInfo.name)
-            user.add_nickname(nickname)
+            nickname = fn_to_nickname(self.context, self.userInfo.name)
+            self.context.add_nickname(nickname)
         else:
             nickname = userInfo.nickname  # --=mpj17=-- See below
+        
+        # / Actual E-Dem Custom code.
 
         cf = str(data.pop('came_from'))
-        if cf == 'None':
-            cf = ''
+        cf = cf if cf != 'None' else ''
         if self.user_has_verified_email:
-            uri = str(data.get('came_from'))
-            if uri == 'None':
-                uri = '/'
-            uri = '%s?welcome=1' % uri
+            parsedCameFrom = urlparse(cf)
+            p = parsedCameFrom.path if cf else '/'
+            uri = '{0}?welcome=1'.format(p)
         else:
-            # --=mpj17=-- I construct the URI manually because there
-            # is a race condition between setting the nickname in the
-            # relational database, and getting it out to form the URI.
-            email = self.context.get_emailAddresses()[0]
-            uri = '/p/%s/verify_wait.html?form.email=%s&form.came_from=%s' %\
-                (nickname, email, cf)
+            email = self.emailUser.get_addresses()[0]
+            u = '{0}/verify_wait.html?{1}'
+            d = {'form.email': email,
+                 'form.came_from': cf}
+            queryString = urlencode(d)
+            uri = u.format('/p/%s' % nickname, queryString)
+
         assert uri
         return self.request.RESPONSE.redirect(uri)
 
