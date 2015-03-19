@@ -11,8 +11,8 @@
     permission="zope2.ManageProperties" />
 
   <browser:page
-    for="*"
     name="request_registration.html"
+    for="Products.GSContent.interfaces.IGSSiteFolder"
     class=".request_registration.EDemRequestRegistrationForm"
     layer="edem.skin.interfaces.IEDemLayer"
     permission="zope2.Public" />
