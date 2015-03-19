@@ -4,19 +4,19 @@
   xmlns:five="http://namespaces.zope.org/five">
 
  <browser:page
-    for="Products.CustomUserFolder.interfaces.ICustomUser" 
-    name="registration_profile.html" 
-    class=".edit_profile.EDemRegisterEditProfileForm" 
-    layer="edem.skin.interfaces.IEDemLayer" 
+    for="Products.CustomUserFolder.interfaces.ICustomUser"
+    name="registration_profile.html"
+    class=".edit_profile.EDemRegisterEditProfileForm"
+    layer="edem.skin.interfaces.IEDemLayer"
     permission="zope2.ManageProperties" />
 
   <browser:page
-    for="*" 
-    name="request_registration.html" 
-    class=".request_registration.EDemRequestRegistrationForm" 
-    layer="edem.skin.interfaces.IEDemLayer" 
+    for="*"
+    name="request_registration.html"
+    class=".request_registration.EDemRequestRegistrationForm"
+    layer="edem.skin.interfaces.IEDemLayer"
     permission="zope2.Public" />
-    
+
   <browser:resource
     name="edem-profile-signup-20140402.js"
     file="browser/javascript/signup-min.js"
