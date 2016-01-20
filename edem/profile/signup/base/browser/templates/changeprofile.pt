@@ -4,7 +4,7 @@
   metal:use-macro="context/@@groupserver_layout/page">
   <head>
     <title metal:fill-slot="title">
-      <span tal:replace="view/label"/>: 
+      <span tal:replace="view/label"/>:
       Sign Up:
       <span tal:replace="view/siteInfo/get_name"/>
     </title>
@@ -24,10 +24,10 @@
       </p>
       <p>
         You can now <strong>change your profile.</strong>
-        When you have finished, click the 
-        <samp class="button" 
+        When you have finished, click the
+        <samp class="button"
           tal:define="action python:[a for a in view.actions][0].label"
-          tal:content="action">Big R</samp> 
+          tal:content="action">Big R</samp>
         button.
         Some profile fields are required, and are marked
         <span class="required"><label style="display:inline;margin:0px;">like this</label></span>.
@@ -35,7 +35,7 @@
       <p>
         Most of your profile properties are only visible to other
         logged in users of
-        <span class="site" 
+        <span class="site"
           tal:content="view/siteInfo/get_name">this site</span>,
         when they visit your profile page.
         However, if you post to a public group, then your name will be
@@ -62,7 +62,7 @@
           <tal:block define="widgets python:[view.widgets['givenName'], view.widgets['familyName']]">
             <tal:block replace="structure provider:groupserver.FormWidgets"/>
           </tal:block>
-          <div class="form-widget" id="widget-abc123" 
+          <div class="form-widget" id="widget-abc123"
             tal:define="widget python:view.widgets['fn']; req widget/required;
               style python:req and 'required' or 'not-required'"
             tal:attributes="id string:widget-${widget/name};
@@ -71,10 +71,10 @@
               tal:attributes="for widget/name; title widget/hint"
               tal:content="widget/label">
               A label
-            </label>                      
-            <div class="form-widget not-required" 
+            </label>
+            <div class="form-widget not-required"
               style="margin-left: 1.39em;">
-              <input class="checkboxType" type="checkbox" name="faux0" 
+              <input class="checkboxType" type="checkbox" name="faux0"
                 id="editFnInterlock"/>
               <label for="editFnInterlock" class="checkboxLabel">Edit
                 (to add a nickname, as long as your real name is included)</label>
@@ -84,21 +84,21 @@
             <tal:block define="widgets python:[view.widgets['region'],view.widgets['neighbourhood']]">
               <tal:block
                 replace="structure provider:groupserver.FormWidgets"/>
-          </tal:block>          
+          </tal:block>
         </div><!--standardProfileFields-->
          <div id="advancedProfileFields" class="disclosureWidget">
           <p>
             <a class="disclosureButton" href="javascript:showHideDisclosure('advancedProfileFields')">You may optionally share more details, add bio, set time zone.</a>
           </p>
           <div class="disclosureShowHide" style="display: none;">
-           
+
           <tal:block define="widgets python:view.filteredOptionalProfileWidgets(['form.region','form.neighbourhood'])">
             <tal:block
               replace="structure provider:groupserver.FormWidgets"/>
           </tal:block>
           </div><!--disclosureShowHide-->
         </div><!--advancedProfileFields-->
-        
+
         <div id="nonProfileFields">
           <tal:block define="widgets view/nonProfileWidgets">
             <tal:block
@@ -126,9 +126,9 @@
           <tal:block repeat="widget view/hiddenWidgets">
             <tal:block
               replace="structure widget/hidden"/>
-          </tal:block>          
+          </tal:block>
         </div><!--hiddenFields-->
-        
+
         <div class="buttons" tal:condition="view/availableActions">
           <tal:block repeat="action view/actions">
             <div class="formelementbutton">
@@ -136,7 +136,7 @@
             </div>
           </tal:block>
         </div>
-        
+
       </form>
     </tal:block>
     <tal:block metal:fill-slot="javascript">
@@ -154,4 +154,3 @@
     </tal:block>
   </body>
 </html>
-
